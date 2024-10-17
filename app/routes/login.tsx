@@ -1,36 +1,49 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { Form, } from "@remix-run/react";
+import { Form, useNavigate } from "@remix-run/react";
+import { useEffect, useState } from "react";
 import { Button, Input } from "@headlessui/react";
-import { ActionFunctionArgs, redirectDocument } from "@remix-run/cloudflare";
+import { app } from "firebase/config";
+import { getUID } from "firebase/getUID";
 
-export const action = async ({ request }: ActionFunctionArgs) => {
-    const formData = await request.formData();
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const auth = getAuth();
-    const isOK: boolean = await signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-            return true;
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.error(errorCode, errorMessage);
-            return false;
-            // return json({ errorCode: errorCode, errorMessage: errorMessage }, { status: 400 });
-        });
-
-    if (isOK == true) {
-        return redirectDocument("/admin");
-    } else {
-        return redirectDocument("/login");
-    }
-}
 
 export default function AdminLogin() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (getUID() !== null) {
+            navigate("/admin");
+        }
+    });
+
+    const [errorMessages, setErrorMessages] = useState("");
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const form = new FormData(event.currentTarget);
+        const email = form.get("email") as string;
+        const password = form.get("password") as string;
+        console.log(email, password);
+        const auth = getAuth(app);
+        console.log(auth);
+
+        await signInWithEmailAndPassword(auth, email, password)
+            .then(() => {
+                // Signed in 
+                // const user = userCredential.user;
+                navigate("/admin");
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setErrorMessages(`${errorCode}: ${errorMessage}`);
+            });
+
+    }
+
     return (
         <>
-            <Form method="POST">
+            <Form onSubmit={handleSubmit}>
+                {errorMessages && <div className="text-red-500">{errorMessages}</div>}
                 <label htmlFor="email">email</label>
                 <Input name="email" type="email" className="mb-3 block w-full rounded-lg border bg-white/5 py-1.5 px-3 text-sm/6"></Input>
                 <label htmlFor="password">password</label>
