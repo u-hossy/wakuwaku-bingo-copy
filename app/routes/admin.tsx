@@ -6,12 +6,11 @@ import SignIn from '~/components/SignIn';
 
 
 export default function Admin() {
-    const [user, loading, error] = useAuthState(auth);
-    console.log(user, loading, error);
+    const [user, loading] = useAuthState(auth);
     return (
         <>
             {loading && <div>Loading...</div>}
-            {user ? <AdminConsole /> : <>{error}<SignIn /></>}
+            {user ? <AdminConsole /> : <><SignIn /></>}
         </>
     )
 }
