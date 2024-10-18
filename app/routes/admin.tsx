@@ -1,26 +1,17 @@
-import { Button } from "@headlessui/react";
-import { signOut } from "firebase/auth";
-import { useNavigate } from "@remix-run/react";
-import { auth } from "firebase/config";
+// import React from 'react'
+import { auth } from 'firebase/config'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import AdminConsole from '~/components/AdminConsole';
+import SignIn from '~/components/SignIn';
+
 
 export default function Admin() {
-    const navigate = useNavigate();
-
-    const handleSignOut = async () => {
-        await signOut(auth).then(() => {
-            // Sign-out successful.
-            navigate("/login");
-
-        }).catch((error) => {
-            // An error happened.
-            console.error(error);
-        });
-    }
-
+    const [user, loading, error] = useAuthState(auth);
+    console.log(user, loading, error);
     return (
-        <div>
-            <h1>Admin</h1>
-            <Button onClick={handleSignOut}>ログアウト</Button>
-        </div>
-    );
+        <>
+            {loading && <div>Loading...</div>}
+            {user ? <AdminConsole /> : <>{error}<SignIn /></>}
+        </>
+    )
 }
