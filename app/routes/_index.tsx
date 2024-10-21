@@ -1,7 +1,7 @@
 import type { MetaFunction } from "@remix-run/cloudflare";
-import { useState } from "react";
-import { onValue, ref, set } from "firebase/database";
-import { db } from "firebase/config";
+import { useRef } from "react";
+import Numbers from "~/components/Numbers";
+import Prizes from "~/components/Prizes";
 
 export const meta: MetaFunction = () => {
   return [
@@ -10,44 +10,13 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+type NowPage = "prizes" | "numbers";
+
 export default function Index() {
-  const [input, setInput] = useState("");
-  const [data, setData] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
-  }
-
-  const sendData = async () => {
-    console.log(input);
-    set(ref(db, "data/"), {
-      value: input,
-      time: Date.now()
-    });
-    console.log("Data sent");
-  }
-
-  const getData = async () => {
-    try {
-      const dataRef = ref(db, "data/");
-      onValue(dataRef, (snapshot) => {
-        const data = snapshot.val();
-        console.log(data);
-        setData(data.value);
-        console.log("Data received");
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
+  const nowPage = useRef<NowPage>("numbers");
   return (
     <>
-      <input type="text" value={input} onChange={handleChange} />
-      <button onClick={sendData}>send</button>
-
-      <button onClick={getData}>get</button>
-      <p>Data: {data}</p>
+      {nowPage.current === "numbers" ? <Numbers /> : <Prizes />}
     </>
   );
 }

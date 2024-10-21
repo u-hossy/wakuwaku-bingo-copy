@@ -10,7 +10,7 @@ export default function Admin() {
     return (
         <>
             {loading && <div>Loading...</div>}
-            {user ? <AdminConsole /> : <><SignIn /></>}
+            {user ? <AdminConsole /> : <SignIn />}
         </>
     )
 }
