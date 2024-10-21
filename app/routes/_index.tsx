@@ -2,6 +2,7 @@ import type { MetaFunction } from "@remix-run/cloudflare";
 import { useState } from "react";
 import Numbers from "~/components/Numbers";
 import Prizes from "~/components/Prizes";
+import { NowPage } from "../types/NowPage";
 
 export const meta: MetaFunction = () => {
   return [
@@ -10,18 +11,15 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-type NowPage = "prizes" | "numbers";
-
 export default function Index() {
-  const [nowPage, setNowPage] = useState<NowPage>("numbers");
+  const [nowPage, setNowPage] = useState("numbers");
   return (
     <>
       <ol>
         <button onClick={() => setNowPage("numbers")}>NUMBERS</button>
         <button onClick={() => setNowPage("prizes")}>PRIZES</button>
       </ol >
-      {nowPage === "numbers" ? <Numbers /> : <Prizes />
-      }
+      {nowPage === "numbers" ? <Numbers /> : <Prizes />}
     </>
   );
 }

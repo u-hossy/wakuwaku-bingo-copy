@@ -3,30 +3,38 @@ import { ref, onValue } from "firebase/database";
 import { db } from "firebase/config";
 
 export default function Numbers() {
-    const [numbers, setNumbers] = useState([]);
-
-    const getData = async () => {
-        try {
-            const dataRef = ref(db, "data/");
-            onValue(dataRef, (snapshot) => {
-                const data = snapshot.val();
-                console.log(data.value);
-                setNumbers(data);
-                console.log("Data received");
-            });
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    const [numbers, setNumbers] = useState<{ "order": number }[]>([]);
 
     useEffect(() => {
-        getData();
+        // const getData = () => {
+        //     const dataRef = ref(db, "number/");
+        //     onValue(dataRef, (snapshot) => {
+        //         const data = snapshot.val();
+        //         console.log(data);
+        //         setNumbers(data);
+        //         console.log("Data received");
+        //     });
+        // }
+        // getData();
+        const dataRef = ref(db, "number/");
+        return onValue(dataRef, (snapshot) => {
+            const data = snapshot.val();
+            if (snapshot.exists()) {
+                (data).map((number) => {
+                    setNumbers((prev) => {
+                        return [...prev, { order: number as number }]
+                    })
+                })
+            }
+        })
     });
 
     return (
         <>
             <div>Numbers</div>
-            {numbers}
+            {numbers.map((number, index) => {
+                return <div key={index}>{number.order}</div>
+            })}
         </>
     )
 }
