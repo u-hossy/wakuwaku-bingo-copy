@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
 import { realtimeDatabase } from "firebase/config";
+import { BingoNumber } from "~/types/dataTypes";
 
 export default function Numbers() {
-    const [numbers, setNumbers] = useState<{ "order": number }[]>([]);
+    const [numbers, setNumbers] = useState<BingoNumber[]>([]);
     const [db] = useState(realtimeDatabase);
 
     useEffect(() => {
         const numberRef = ref(db, "number/");
         onValue(numberRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                setNumbers(Object.values(data));
+            const _data = snapshot.val();
+            console.log(_data);
+            if (_data) {
+                const dataExceptOrder0 = _data.filter((data: { order: number }) => data.order !== 0);
+                const sortedData = dataExceptOrder0.sort((a: { order: number }, b: { order: number }) => b.order - a.order);
+                setNumbers(Object.values(sortedData));
             }
         });
     }, [db]);
@@ -20,9 +24,11 @@ export default function Numbers() {
     return (
         <>
             <div>Numbers</div>
-            {numbers.map((number, index) => {
-                return <div key={index}>{number.order}</div>
-            })}
+            <ul>
+                {numbers.map((number, index) => {
+                    return <li key={index}>{number.name}</li>
+                })}
+            </ul>
         </>
     )
 }
