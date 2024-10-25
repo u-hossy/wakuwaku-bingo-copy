@@ -4,17 +4,17 @@ import { db } from "firebase/config";
 
 export default function Numbers() {
     const [numbers, setNumbers] = useState<{ "order": number }[]>([]);
+    const [database] = useState(db);
 
     useEffect(() => {
-        const numberRef = ref(db, "number/");
+        const numberRef = ref(database, "number/");
         onValue(numberRef, (snapshot) => {
             const data = snapshot.val();
-            console.log(data);
             if (data) {
                 setNumbers(Object.values(data));
             }
         });
-    }, [numbers]);
+    }, [database]);
 
 
     return (
