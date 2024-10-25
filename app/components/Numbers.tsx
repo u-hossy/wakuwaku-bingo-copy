@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
 import { realtimeDatabase } from "firebase/config";
 import { BingoNumber } from "~/types/dataTypes";
+import NumberBox from "./NumberBox";
 
 export default function Numbers() {
     const [numbers, setNumbers] = useState<BingoNumber[]>([]);
@@ -28,6 +29,7 @@ export default function Numbers() {
                     return <li key={index}>{number.name}</li>
                 })}
             </ul>
+            <NumberBox calledNumber={1} />
         </>
     )
 }
