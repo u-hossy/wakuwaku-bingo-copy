@@ -9,3 +9,4 @@ node_modules
 
 .firebaserc
 firebase.json
+*debug.log
