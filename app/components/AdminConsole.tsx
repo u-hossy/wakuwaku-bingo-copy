@@ -2,7 +2,7 @@
 import { Button } from "@headlessui/react";
 import { signOut } from "firebase/auth";
 import { set, ref } from "firebase/database";
-import { db, auth } from "firebase/config";
+import { realtimeDatabase, auth } from "firebase/config";
 
 
 export default function AdminConsole() {
@@ -12,7 +12,7 @@ export default function AdminConsole() {
 
     const sendData = async () => {
         console.log(input);
-        set(ref(db, "data/"), {
+        set(ref(realtimeDatabase, "data/"), {
             value: input,
             time: Date.now()
         });
