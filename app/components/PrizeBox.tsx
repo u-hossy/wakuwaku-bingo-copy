@@ -1,4 +1,4 @@
-export default function PrizeBox({image,name,amount}:{image: string, name: string, amount: number}) {
+export default function PrizeBox({image,name,amount}:{image?: string, name: string, amount: number}) {
   return (
     <div style={styles.container}>
         <img src={image} alt={name}/>
@@ -11,9 +11,12 @@ export default function PrizeBox({image,name,amount}:{image: string, name: strin
 const styles: { container: React.CSSProperties } = {
   container: {
     display: 'flex',
+    display:'inline',
     flexDirection: 'column', 
     alignItems: 'center',
     padding: '20px',
+    backgroundColor:'red'
+
   },
 };
 

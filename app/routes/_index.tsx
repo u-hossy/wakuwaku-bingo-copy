@@ -2,6 +2,7 @@ import type { MetaFunction } from "@remix-run/cloudflare";
 import { useState } from "react";
 import Numbers from "~/components/Numbers";
 import Prizes from "~/components/Prizes";
+import PrizeBox from "~/components/PrizeBox";
 
 export const meta: MetaFunction = () => {
   return [
@@ -18,7 +19,9 @@ export default function Index() {
         <button onClick={() => setNowPage("numbers")}>NUMBERS</button>
         <button onClick={() => setNowPage("prizes")}>PRIZES</button>
       </ol >
+      <PrizeBox name="aaaa" amount={2} />
       {nowPage === "numbers" ? <Numbers /> : <Prizes />}
+      
     </>
-  );
+  )
 }
