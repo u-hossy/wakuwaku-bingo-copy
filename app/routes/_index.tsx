@@ -19,7 +19,7 @@ export default function Index() {
         <button onClick={() => setNowPage("numbers")}>NUMBERS</button>
         <button onClick={() => setNowPage("prizes")}>PRIZES</button>
       </ol >
-      <PrizeBox name="aaaa" amount={2} />
+      <PrizeBox name="aaa" amount={2} isSold={false} />
       {nowPage === "numbers" ? <Numbers /> : <Prizes />}
       
     </>
