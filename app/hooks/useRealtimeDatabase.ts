@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
 import { realtimeDatabase } from "firebase/config";
-import { BingoNumber } from "~/types/dataTypes";
+import { BingoNumber, Prize } from "~/types/dataTypes";
 
-export function useFetchNumber() {
-  const [numbers, setNumbers] = useState<BingoNumber[]>([]);
+function useFetch<T>(directory: string) {
+  const [data, setData] = useState<T[]>([]);
   const [db] = useState(realtimeDatabase);
 
   useEffect(() => {
-    const numberRef = ref(db, "number/");
-    onValue(numberRef, (snapshot) => {
+    const dataRef = ref(db, directory);
+    onValue(dataRef, (snapshot) => {
       const _data = snapshot.val();
       console.log(_data);
       if (_data) {
@@ -19,10 +19,17 @@ export function useFetchNumber() {
         const sortedData = dataExceptOrder0.sort(
           (a: { order: number }, b: { order: number }) => b.order - a.order
         );
-        setNumbers(Object.values(sortedData));
+        setData(Object.values(sortedData));
       }
     });
-  }, [db]);
+  }, [db, directory]);
+  return data;
+}
 
-  return [numbers];
+export function useFetchNumber(): BingoNumber[] | null {
+  return useFetch<BingoNumber>("number/");
+}
+
+export function useFetchPrize(): Prize[] | null {
+  return useFetch<Prize>("prize/");
 }

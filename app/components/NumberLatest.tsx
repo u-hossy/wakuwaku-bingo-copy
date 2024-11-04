@@ -1,28 +1,9 @@
-import { useEffect, useState } from "react";
-import { ref, onValue } from "firebase/database";
-import { realtimeDatabase } from "firebase/config";
+import { useFetchNumber } from '../hooks/useRealtimeDatabase';
 
 export default function NumberLatest() {
-    const [number, setNumber] = useState<number>();
-
-    const getData = async () => {
-        try {
-            const dataRef = ref(realtimeDatabase, "data/");
-            onValue(dataRef, (snapshot) => {
-                const data = snapshot.val();
-                console.log(data.value);
-                setNumber(data);
-                console.log("Data received");
-            });
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    useEffect(() => {
-        getData();
-    });
+    const number = useFetchNumber();
+    console.log(number);
     return (
-        <div>NumberLatest: {number}</div>
+        <div>NumberLatest: {number ? <span>{number[0].name}</span> : <></>}</div>
     )
 }
