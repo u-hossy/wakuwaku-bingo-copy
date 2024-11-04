@@ -16,10 +16,10 @@ export default function Index() {
 
   return (
     <>
-      <ol>
-        <button className={nowPage === "numbers" ? "active" : "inactive" } onClick={() => setNowPage("numbers")}>NUMBERS</button>
-        <button className={nowPage === "prizes" ? "active" : "inactive" } onClick={() => setNowPage("prizes")}>PRIZES</button>
-      </ol >
+      <div className="tab-container">
+        <button className={nowPage === "numbers" ? "active tab-button" : "inactive tab-button" } onClick={() => setNowPage("numbers")}>NUMBERS</button>
+        <button className={nowPage === "prizes" ? "active tab-button" : "inactive tab-button" } onClick={() => setNowPage("prizes")}>PRIZES</button>
+      </div >
       
       {nowPage === "numbers" ? <Numbers /> : <Prizes />}
     </>

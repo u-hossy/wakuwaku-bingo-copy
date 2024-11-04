@@ -1,48 +1,58 @@
 /* ボタンリストをスタイリッシュに */
-.button-list {
-  display: flex;
-  gap: 1rem;
-  list-style: none;
-  padding: 0;
-  justify-content: center;
-  margin-top: 20px;
-}
 
-/* ボタンのベーススタイル */
-button {
-  padding: 0.5rem 1.5rem;
-  border: 2px solid #0070f3;
-  background-color: white;
-  color: #0070f3;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, transform 0.3s;
-  letter-spacing: 0.1rem; /* 文字間隔を広げる */
-}
-
-/* ボタンのホバースタイル */
-button:hover {
-  background-color: #0070f3;
-  color: white;
-  transform: scale(1.05);
-}
-
-/* アクティブなボタンのスタイル */
-button.active {
-  background-color: #0070f3;
-  color: white;
-  box-shadow: 0 0 10px rgba(0, 112, 243, 0.5);
-}
 body {
   background-color: #676cb1;
-  -webkit-text-fill-color: black;
+  /* -webkit-text-fill-color: black; */
 
   text-align: center;
 
-  height: 1000px;
+  min-height: 100lvh;
 }
 
-ol {
-  height: 100px;
+
+/* タブコンテナのスタイル */
+.tab-container {
+  display: flex;
+  border-bottom: 2px solid #ccc; /* タブコンテナの下線 */
+}
+
+/* ボタンの基本スタイル */
+.tab-button {
+  background-color: transparent;
+  border: none;
+  width: 50%;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #ffffff;
+  outline: none;
+  position: relative;
+  transition: color 0.3s;
+}
+
+/* ボタンホバー時のスタイル */
+.tab-button:hover {
+  color: #000;
+}
+
+/* 非選択タブの下線 */
+.tab-button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: transparent;
+  transition: background-color 0.3s, height 0.3s;
+}
+
+/* 選択中のタブ（.active）のスタイル */
+.tab-button.active {
+  color: #ffffff;
+}
+
+.tab-button.active::after {
+  background-color: #fff; /* 下線の色を白に設定 */
+  height: 4px; /* 下線の太さを調整 */
 }
