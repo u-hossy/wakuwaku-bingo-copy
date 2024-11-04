@@ -1,0 +1,48 @@
+/* ボタンリストをスタイリッシュに */
+.button-list {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* ボタンのベーススタイル */
+button {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid #0070f3;
+  background-color: white;
+  color: #0070f3;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  letter-spacing: 0.1rem; /* 文字間隔を広げる */
+}
+
+/* ボタンのホバースタイル */
+button:hover {
+  background-color: #0070f3;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* アクティブなボタンのスタイル */
+button.active {
+  background-color: #0070f3;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 112, 243, 0.5);
+}
+body {
+  background-color: #676cb1;
+  -webkit-text-fill-color: black;
+
+  text-align: center;
+
+  height: 1000px;
+}
+
+ol {
+  height: 100px;
+}
