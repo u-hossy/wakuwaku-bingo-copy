@@ -1,4 +1,4 @@
-import { useFetchNumber } from "~/hooks/useRealtimeDatabase";
+import { useFetchNumber } from "~/libs/fetchRealtimeDatabase";
 
 export default function Numbers() {
     const numbers = useFetchNumber();
