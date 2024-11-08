@@ -10,26 +10,28 @@ function useFetch<T>(directory: string) {
   useEffect(() => {
     const dataRef = ref(db, directory);
     onValue(dataRef, (snapshot) => {
-      const _data = snapshot.val();
+      const _data = Object.values(snapshot.val()) as T[];
       console.log(_data);
-      if (_data) {
-        const dataExceptOrder0 = _data.filter(
-          (data: { order: number }) => data.order > 0
-        );
-        const sortedData = dataExceptOrder0.sort(
-          (a: { order: number }, b: { order: number }) => b.order - a.order
-        );
-        setData(Object.values(sortedData));
-      }
+      setData(_data);
     });
   }, [db, directory]);
   return data;
 }
 
 export function useFetchNumber(): BingoNumber[] | null {
-  return useFetch<BingoNumber>("number/");
+  const data = useFetch<BingoNumber>("number/");
+  const dataExceptOrder0 = data.filter((c) => c.order > 0);
+  const sortedData = dataExceptOrder0.sort((a, b) =>
+    a.order > b.order ? -1 : 1
+  );
+  return sortedData;
 }
 
 export function useFetchPrize(): Prize[] | null {
-  return useFetch<Prize>("prize/");
+  const data = useFetch<Prize>("prize/");
+  const dataExceptOrder0 = data.filter((c) => c.order > 0);
+  const sortedData = dataExceptOrder0.sort((a, b) =>
+    a.order < b.order ? -1 : 1
+  );
+  return sortedData;
 }
