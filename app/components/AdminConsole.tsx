@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { signOut } from "firebase/auth";
-import { set, ref } from "firebase/database";
-import { realtimeDatabase, auth } from "firebase/config";
+import { auth } from "firebase/config";
 import { IsStarted, ProjectorMode } from "~/types/dataTypes";
 import { Form } from "@remix-run/react";
 import Input from "./Input";
 import ToggleSwitch from "./ToggleSwitch";
 import Button from "./Button";
 import { useFetchNumber } from "~/libs/fetchRealtimeDatabase";
+import { sendNumber } from "~/libs/sendRealtimeDatabase";
 
 
 
@@ -16,10 +16,7 @@ export default function AdminConsole() {
     const [isStarted, setIsStarted] = useState<IsStarted>(false);
     const [projectorMode, setProjectorMode] = useState<ProjectorMode>("latest");
 
-
     const fetchNumbers = useFetchNumber();
-
-    console.log(fetchNumbers);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -29,11 +26,12 @@ export default function AdminConsole() {
             const number = parseInt(_number as string);
             if (number > 0) {
                 if (window.confirm(`${number}をビンゴ済みにしますか？`)) {
-                    await set(ref(realtimeDatabase, `number/${number}`), {
-                        name: number,
-                        order: fetchNumbers ? fetchNumbers.filter((n) => n.order > 0).length + 1 : 1
-                    });
-                    window.alert(`${number}をビンゴ済みにしました`);
+                    console.log(fetchNumbers);
+                    const order = fetchNumbers && fetchNumbers.length > 0
+                        ? fetchNumbers.filter((n) => n.order > 0).length + 1
+                        : 1;
+                    await sendNumber(number, order);
+                    // window.alert(`${number}をビンゴ済みにしました`);
                 } else {
                     window.alert("キャンセルしました");
                 }
@@ -93,7 +91,8 @@ export default function AdminConsole() {
                                     name="number"
                                     label="番号入力"
                                     description="ビンゴになった番号を半角で入力し、Enterを押してください"
-                                    type="number" />
+                                    type="number"
+                                />
                                 <div className="flex justify-center">
                                     <Button type="submit">送信</Button>
                                 </div>
@@ -110,8 +109,10 @@ export default function AdminConsole() {
                 <div className="flex flex-col w-1/3 px-4">
                     <div className="pb-4">
                         <h2>景品管理</h2>
+                        <button onClick={() => sendNumber(51, 53)}>test</button>
                     </div>
                 </div>
+
             </div>
 
             {/* <Button onClick={sendData}>sendData</Button>

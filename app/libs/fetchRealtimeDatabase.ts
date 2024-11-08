@@ -11,7 +11,6 @@ function useFetch<T>(directory: string) {
     const dataRef = ref(db, directory);
     onValue(dataRef, (snapshot) => {
       const _data = Object.values(snapshot.val()) as T[];
-      console.log(_data);
       setData(_data);
     });
   }, [db, directory]);
