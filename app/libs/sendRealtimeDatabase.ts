@@ -1,13 +1,18 @@
+// 使わんかも
+
 import { ref, set } from "firebase/database";
 import { realtimeDatabase } from "firebase/config";
 
-function useSend(directory: string, data: string) {
-  console.log(data);
-  set(ref(realtimeDatabase, directory), {
-    value: data,
-    time: Date.now(),
-  });
-  console.log("Data sent");
+function sendData(directory: string, content: object) {
+  set(ref(realtimeDatabase, directory), content);
 }
 
-export { useSend };
+function sendNumber(name: number, order: number) {
+  const content = {
+    name: name,
+    order: order,
+  };
+  sendData("number/", content);
+}
+
+export { sendNumber };
