@@ -1,46 +1,25 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { signOut } from "firebase/auth";
-import { set, onValue, ref } from "firebase/database";
+import { set, ref } from "firebase/database";
 import { realtimeDatabase, auth } from "firebase/config";
-import { BingoNumber, IsStarted, ProjectorMode } from "~/types/dataTypes";
+import { IsStarted, ProjectorMode } from "~/types/dataTypes";
 import { Form } from "@remix-run/react";
 import Input from "./Input";
 import ToggleSwitch from "./ToggleSwitch";
 import Button from "./Button";
+import { useFetchNumber } from "~/libs/fetchRealtimeDatabase";
 
 
 
 export default function AdminConsole() {
     console.log("AdminConsole");
-
-    const [fetchNumbers, setFetchNumbers] = useState<BingoNumber[]>([]);
-    const [db] = useState(realtimeDatabase);
     const [isStarted, setIsStarted] = useState<IsStarted>(false);
     const [projectorMode, setProjectorMode] = useState<ProjectorMode>("latest");
 
-    useEffect(() => {
-        const numberRef = ref(db, "number/");
-        onValue(numberRef, (snapshot) => {
-            const _data = snapshot.val();
-            console.log(_data);
-            if (_data) {
-                const dataExceptOrder0 = _data.filter((data: { order: number }) => data.order > 0);
-                const sortedData = dataExceptOrder0.sort((a: { order: number }, b: { order: number }) => b.order - a.order);
-                setFetchNumbers(Object.values(sortedData));
-            }
-        });
-    }, [db]);
+
+    const fetchNumbers = useFetchNumber();
 
     console.log(fetchNumbers);
-
-    // const sendData = async () => {
-    //     console.log(input);
-    //     set(ref(realtimeDatabase, "data/"), {
-    //         value: input,
-    //         time: Date.now()
-    //     });
-    //     console.log("Data sent");
-    // }
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -52,7 +31,7 @@ export default function AdminConsole() {
                 if (window.confirm(`${number}をビンゴ済みにしますか？`)) {
                     await set(ref(realtimeDatabase, `number/${number}`), {
                         name: number,
-                        order: fetchNumbers.filter((n) => n.order > 0).length + 1
+                        order: fetchNumbers ? fetchNumbers.filter((n) => n.order > 0).length + 1 : 1
                     });
                     window.alert(`${number}をビンゴ済みにしました`);
                 } else {
