@@ -29,7 +29,11 @@ function sendNumberAsLatest(name: number, fetchNumbers: BingoNumber[] | null) {
     fetchNumbers && fetchNumbers.length > 0
       ? fetchNumbers.filter((n) => n.order > 0).length + 1
       : 1;
-  sendNumber({ name, order });
+  if (!fetchNumbers || !fetchNumbers.map((n) => n.name).includes(name)) {
+    sendNumber({ name, order });
+  } else {
+    window.alert(`${name}はすでにビンゴ済みです`);
+  }
 }
 
 function exchangeNumberOrder(mainTarget: BingoNumber, subTarget: BingoNumber) {
