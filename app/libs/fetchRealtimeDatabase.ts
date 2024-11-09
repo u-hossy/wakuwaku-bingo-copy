@@ -28,9 +28,7 @@ export function useFetchNumber(): BingoNumber[] | null {
 
 export function useFetchPrize(): Prize[] | null {
   const data = useFetch<Prize>("prize/");
-  const dataExceptOrder0 = data.filter((c) => c.order > 0);
-  const sortedData = dataExceptOrder0.sort((a, b) =>
-    a.order < b.order ? -1 : 1
-  );
+  const dataExceptOrder0 = data.filter((c) => c.id > 0);
+  const sortedData = dataExceptOrder0.sort((a, b) => (a.id < b.id ? -1 : 1));
   return sortedData;
 }

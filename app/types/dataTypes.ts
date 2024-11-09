@@ -2,7 +2,7 @@
 type BingoNumber = { name: number; order: number };
 
 // ビンゴの景品を保存するところ
-type Prize = { name: string; amount: number; order: number };
+type Prize = { id: number; name: string; amount: number };
 
 // プロジェクターの表示モードを保存するところ
 type ProjectorMode = "latest" | "history";
