@@ -1,6 +1,11 @@
 import { ref, set, update } from "firebase/database";
 import { realtimeDatabase } from "firebase/config";
-import { BingoNumber, Prize } from "~/types/dataTypes";
+import {
+  BingoNumber,
+  IsStarted,
+  Prize,
+  ProjectorMode,
+} from "~/types/dataTypes";
 
 function sendData(directory: string, content: object) {
   set(ref(realtimeDatabase, directory), content);
@@ -47,7 +52,7 @@ function deleteNumber(n: number) {
   sendData(`number/${n}/`, content);
 }
 
-function exchangePrizeOrder() {}
+// function exchangePrizeOrder() {}
 
 function updatePrizeAmount({ id, amount }: Prize) {
   const content = { amount: amount };
@@ -58,13 +63,23 @@ function updatePrizeAmount({ id, amount }: Prize) {
 
 // function increasePrizeAmount() {}
 
+function sendProjectorMode(mode: ProjectorMode) {
+  sendData("projector_mode/", { mode });
+}
+
+function sendIsStarted(isStarted: IsStarted) {
+  sendData("is_started/", { isStarted });
+}
+
 export {
   sendNumber,
   sendNumberAsLatest,
   exchangeNumberOrder,
   deleteNumber,
-  exchangePrizeOrder,
+  // exchangePrizeOrder,
   updatePrizeAmount,
   // decreasePrizeAmount,
   // increasePrizeAmount,
+  sendProjectorMode,
+  sendIsStarted,
 };
