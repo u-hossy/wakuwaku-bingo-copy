@@ -7,6 +7,7 @@ import ToggleSwitch from "./ToggleSwitch";
 import Button from "./Button";
 import { useFetchNumber } from "~/libs/fetchRealtimeDatabase";
 import { sendNumberAsLatest } from "~/libs/sendRealtimeDatabase";
+import AdminNumberList from "./AdminNumberList";
 
 
 
@@ -100,12 +101,7 @@ export default function AdminConsole() {
                             </form>
 
                         </div>
-                        <div className="pb-4">
-                            <h3>ビンゴ済みの番号</h3>
-                        </div>
-                        <div className="pb-4">
-                            <h3>未ビンゴの番号</h3>
-                        </div>
+                        <AdminNumberList />
                     </div>
                 </div>
                 <div className="flex flex-col w-1/3 px-4">

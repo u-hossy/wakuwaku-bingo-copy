@@ -37,12 +37,10 @@ function exchangeNumberOrder(mainTarget: BingoNumber, subTarget: BingoNumber) {
 
 function deleteNumber(n: number) {
   const content = {
-    [n]: {
-      name: n,
-      order: 0,
-    },
+    name: n,
+    order: 0,
   };
-  sendData("number/", content);
+  sendData(`number/${n}/`, content);
 }
 
 function exchangePrizeOrder() {}
