@@ -21,7 +21,11 @@ function sendNumber({ name, order }: BingoNumber) {
     name: name,
     order: order,
   };
-  sendData(`number/${name}/`, content);
+  if (numbers.includes(name)) {
+    sendData(`number/${name}/`, content);
+  } else {
+    window.alert(`${name}は範囲外です`);
+  }
 }
 
 function sendNumberAsLatest(name: number, fetchNumbers: BingoNumber[] | null) {
