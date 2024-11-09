@@ -2,7 +2,6 @@ import { useState } from "react"
 import { signOut } from "firebase/auth";
 import { auth } from "firebase/config";
 import { IsStarted, ProjectorMode } from "~/types/dataTypes";
-import { Form } from "@remix-run/react";
 import Input from "./Input";
 import ToggleSwitch from "./ToggleSwitch";
 import Button from "./Button";
@@ -16,25 +15,28 @@ export default function AdminConsole() {
     const [isStarted, setIsStarted] = useState<IsStarted>(false);
     const [projectorMode, setProjectorMode] = useState<ProjectorMode>("latest");
 
+    const [bingoNumberForm, setBingoNumberForm] = useState<number | "">("");
+
     const fetchNumbers = useFetchNumber();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const form = new FormData(event.currentTarget);
-        const _number = form.get("number");
+        const _number = bingoNumberForm;
         if (_number) {
-            const number = parseInt(_number as string);
+            const number = _number;
             if (number > 0) {
-                if (window.confirm(`${number}をビンゴ済みにしますか？`)) {
-                    console.log(fetchNumbers);
-                    const order = fetchNumbers && fetchNumbers.length > 0
-                        ? fetchNumbers.filter((n) => n.order > 0).length + 1
-                        : 1;
-                    await sendNumber(number, order);
-                    // window.alert(`${number}をビンゴ済みにしました`);
-                } else {
-                    window.alert("キャンセルしました");
-                }
+                // if (window.confirm(`${number}をビンゴ済みにしますか？`)) {
+                console.log(fetchNumbers);
+                const order = fetchNumbers && fetchNumbers.length > 0
+                    ? fetchNumbers.filter((n) => n.order > 0).length + 1
+                    : 1;
+                sendNumber(number, order);
+                setBingoNumberForm("");
+                event.currentTarget.reset();
+                // window.alert(`${number}をビンゴ済みにしました`);
+                // } else {
+                //     window.alert("キャンセルしました");
+                // }
             } else {
                 window.alert("不正な値が入力されました");
             }
@@ -86,17 +88,20 @@ export default function AdminConsole() {
                         <h2>ビンゴ番号管理</h2>
                         <div className="pb-4">
                             <h3>番号をビンゴ済にする</h3>
-                            <Form onSubmit={handleSubmit}>
+                            <form onSubmit={handleSubmit}>
                                 <Input
                                     name="number"
                                     label="番号入力"
                                     description="ビンゴになった番号を半角で入力し、Enterを押してください"
                                     type="number"
+                                    value={bingoNumberForm}
+                                    onChange={(e) => setBingoNumberForm(e.target.value === "" ? "" : parseInt(e.target.value))}
                                 />
                                 <div className="flex justify-center">
                                     <Button type="submit">送信</Button>
                                 </div>
-                            </Form>
+                            </form>
+
                         </div>
                         <div className="pb-4">
                             <h3>ビンゴ済みの番号</h3>

@@ -3,7 +3,7 @@ import { Description, Field, Input as _Input, Label } from '@headlessui/react'
 
 interface InputFieldProps extends ComponentProps<"input"> { label: string, description?: string }
 
-export default function Input({ name, type, label, description }: InputFieldProps) {
+export default function Input({ name, type, label, description, value, onChange }: InputFieldProps) {
 
     return (
         <div className="min-w-full max-w-md px-4">
@@ -14,6 +14,8 @@ export default function Input({ name, type, label, description }: InputFieldProp
                     name={name}
                     type={type}
                     className="my-3 block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white"
+                    value={value}
+                    onChange={onChange}
                 />
             </Field>
         </div>
