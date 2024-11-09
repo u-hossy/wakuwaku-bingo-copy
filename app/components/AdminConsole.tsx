@@ -6,7 +6,7 @@ import Input from "./Input";
 import ToggleSwitch from "./ToggleSwitch";
 import Button from "./Button";
 import { useFetchNumber } from "~/libs/fetchRealtimeDatabase";
-import { sendNumber } from "~/libs/sendRealtimeDatabase";
+import { sendNumberAsLatest } from "~/libs/sendRealtimeDatabase";
 
 
 
@@ -27,10 +27,7 @@ export default function AdminConsole() {
             if (number > 0) {
                 // if (window.confirm(`${number}をビンゴ済みにしますか？`)) {
                 console.log(fetchNumbers);
-                const order = fetchNumbers && fetchNumbers.length > 0
-                    ? fetchNumbers.filter((n) => n.order > 0).length + 1
-                    : 1;
-                sendNumber(number, order);
+                sendNumberAsLatest(number, fetchNumbers);
                 setBingoNumberForm("");
                 event.currentTarget.reset();
                 // window.alert(`${number}をビンゴ済みにしました`);
@@ -114,7 +111,6 @@ export default function AdminConsole() {
                 <div className="flex flex-col w-1/3 px-4">
                     <div className="pb-4">
                         <h2>景品管理</h2>
-                        <button onClick={() => sendNumber(51, 53)}>test</button>
                     </div>
                 </div>
 

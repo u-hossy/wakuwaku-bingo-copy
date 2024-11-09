@@ -14,6 +14,14 @@ function sendNumber(name: number, order: number) {
   sendData(`number/${name}/`, content);
 }
 
+function sendNumberAsLatest(name: number, fetchNumbers: BingoNumber[] | null) {
+  const order =
+    fetchNumbers && fetchNumbers.length > 0
+      ? fetchNumbers.filter((n) => n.order > 0).length + 1
+      : 1;
+  sendNumber(name, order);
+}
+
 function exchangeNumberOrder(mainTarget: BingoNumber, subTarget: BingoNumber) {
   const mainContent = {
     name: mainTarget.name,
@@ -47,6 +55,7 @@ function increasePrizeAmount() {}
 
 export {
   sendNumber,
+  sendNumberAsLatest,
   exchangeNumberOrder,
   deleteNumber,
   exchangePrizeOrder,
