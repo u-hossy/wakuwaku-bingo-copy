@@ -1,12 +1,16 @@
-import { ref, set } from "firebase/database";
+import { ref, set, update } from "firebase/database";
 import { realtimeDatabase } from "firebase/config";
-import { BingoNumber } from "~/types/dataTypes";
+import { BingoNumber, Prize } from "~/types/dataTypes";
 
 function sendData(directory: string, content: object) {
   set(ref(realtimeDatabase, directory), content);
 }
 
-function sendNumber(name: number, order: number) {
+function updateData(directory: string, content: object) {
+  update(ref(realtimeDatabase, directory), content);
+}
+
+function sendNumber({ name, order }: BingoNumber) {
   const content = {
     name: name,
     order: order,
@@ -19,7 +23,7 @@ function sendNumberAsLatest(name: number, fetchNumbers: BingoNumber[] | null) {
     fetchNumbers && fetchNumbers.length > 0
       ? fetchNumbers.filter((n) => n.order > 0).length + 1
       : 1;
-  sendNumber(name, order);
+  sendNumber({ name, order });
 }
 
 function exchangeNumberOrder(mainTarget: BingoNumber, subTarget: BingoNumber) {
@@ -45,11 +49,14 @@ function deleteNumber(n: number) {
 
 function exchangePrizeOrder() {}
 
-function setPrizeAmount() {}
+function updatePrizeAmount({ id, amount }: Prize) {
+  const content = { amount: amount };
+  updateData(`prize/${id}/`, content);
+}
 
-function decreasePrizeAmount() {}
+// function decreasePrizeAmount() {}
 
-function increasePrizeAmount() {}
+// function increasePrizeAmount() {}
 
 export {
   sendNumber,
@@ -57,7 +64,7 @@ export {
   exchangeNumberOrder,
   deleteNumber,
   exchangePrizeOrder,
-  setPrizeAmount,
-  decreasePrizeAmount,
-  increasePrizeAmount,
+  updatePrizeAmount,
+  // decreasePrizeAmount,
+  // increasePrizeAmount,
 };

@@ -8,11 +8,11 @@ import Button from "./Button";
 import { useFetchNumber } from "~/libs/fetchRealtimeDatabase";
 import { sendNumberAsLatest } from "~/libs/sendRealtimeDatabase";
 import AdminNumberList from "./AdminNumberList";
+import AdminPrizeList from "./AdminPrizeList";
 
 
 
 export default function AdminConsole() {
-    console.log("AdminConsole");
     const [isStarted, setIsStarted] = useState<IsStarted>(false);
     const [projectorMode, setProjectorMode] = useState<ProjectorMode>("latest");
 
@@ -107,6 +107,7 @@ export default function AdminConsole() {
                 <div className="flex flex-col w-1/3 px-4">
                     <div className="pb-4">
                         <h2>景品管理</h2>
+                        <AdminPrizeList />
                     </div>
                 </div>
 
