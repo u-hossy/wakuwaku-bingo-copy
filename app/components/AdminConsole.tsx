@@ -24,13 +24,9 @@ export default function AdminConsole() {
         const _number = bingoNumberForm;
         if (_number) {
             const number = _number;
-            if (number > 0) {
-                sendNumberAsLatest(number, fetchNumbers);
-                setBingoNumberForm("");
-                event.currentTarget.reset();
-            } else {
-                window.alert("不正な値が入力されました");
-            }
+            sendNumberAsLatest(number, fetchNumbers);
+            setBingoNumberForm("");
+            event.currentTarget.reset();
         }
     }
 
