@@ -45,7 +45,7 @@ function useFetchValue<T>(directory: string) {
   useEffect(() => {
     const dataRef = ref(db, directory);
     onValue(dataRef, (snapshot) => {
-      const _data = snapshot.val() as T;
+      const _data = Object.values(snapshot.val())[0] as T;
       setData(_data);
     });
   }, [db, directory]);
