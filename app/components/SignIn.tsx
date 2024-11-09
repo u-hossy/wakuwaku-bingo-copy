@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Form } from "@remix-run/react";
+import { Form, Link } from "@remix-run/react";
 import { auth } from 'firebase/config'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import Input from './Input';
@@ -29,15 +29,20 @@ export default function SignIn() {
 
     }
     return (
-        <>
+        <div className="pt-4 px-8">
+            <h1 className="text-center text-2xl text-neutral-50">委員向けログイン画面</h1>
             <Form onSubmit={handleSubmit} className="flex flex-col items-center">
                 <div className="h-8 py-2 text-red-500">{errorMessages && <span>{errorMessages}</span>}</div>
                 <Input label="メールアドレス" name="email" type="email" description="メールアドレスを入力してください" />
                 <Input label="パスワード" name="password" type="password" description="パスワードを入力してください" />
-                <Button type="submit">
-                    サインイン
-                </Button>
+                <div className="flex flex-row gap-4">
+                    <Link to="/"><Button>一般向けページに戻る</Button></Link>
+                    <Button type="submit">
+                        サインイン
+                    </Button>
+                </div>
+
             </Form>
-        </>
+        </div>
     )
 }

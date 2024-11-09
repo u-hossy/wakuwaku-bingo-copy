@@ -6,7 +6,7 @@ interface InputFieldProps extends ComponentProps<"input"> { label: string, descr
 export default function Input({ name, type, label, description, value, onChange }: InputFieldProps) {
 
     return (
-        <div className="min-w-full max-w-md px-4">
+        <div className="min-w-full max-w-md">
             <Field className="w-full">
                 <Label className="text-sm/6 font-medium text-white">{label}</Label>
                 <Description className="text-sm/6 text-white/50">{description}</Description>

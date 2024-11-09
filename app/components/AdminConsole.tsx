@@ -53,28 +53,29 @@ export default function AdminConsole() {
     return (
         <div className="min-h-screen bg-neutral-950 text-neutral-50 flex flex-col">
             <div className="flex flex-row items-center justify-between px-4 py-2">
-                <h1 className="text-2xl py-4 flex-grow text-center">BINGO-ADMIN</h1>
-                <Button onClick={() => signOut(auth)}>サインアウト</Button>
+                <div className="w-1/6"></div>
+                <h1 className="text-2xl font-bold py-4 flex-grow text-center">BINGO-ADMIN</h1>
+                <div className="w-1/6 flex items-center justify-end"><Button onClick={() => signOut(auth)}>サインアウト</Button></div>
             </div>
-            <div className="flex flex-row">
+            <div className="flex flex-col md:flex-row">
                 <div className="flex flex-col w-1/3 px-4 pb-4">
                     <div className="pb-4">
-                        <h2>プロジェクター</h2>
+                        <h2 className="text-xl font-bold">プロジェクター</h2>
                         <ul className="pb-2">
-                            <li className="flex flex-row justify-between">
+                            <li className="flex flex-row justify-between py-1">
                                 <span>ビンゴを開始状態にする</span>
                                 <ToggleSwitch checked={isStarted} onChange={setIsStarted} />
                             </li>
-                            <li className="flex flex-row justify-between">
+                            <li className="flex flex-row justify-between py-1">
                                 <span>プロジェクターに番号履歴を表示する</span>
                                 <ToggleSwitch checked={projectorMode === "history"} onChange={() => projectorMode === "history" ? setProjectorMode("latest") : setProjectorMode("history")} />
                             </li>
                         </ul>
                     </div>
                     <div className="pb-4">
-                        <h2>ビンゴのリセット</h2>
+                        <h2 className="text-xl font-bold">ビンゴのリセット</h2>
                         <ul className="pb-2">
-                            <li className="flex flex-row justify-between">
+                            <li className="flex flex-row justify-between items-center">
                                 <span>すべての内容をリセットする</span>
                                 <Button onClick={handleReset}>実行</Button>
                             </li>
@@ -83,9 +84,8 @@ export default function AdminConsole() {
                 </div>
                 <div className="flex flex-col w-1/3 px-4">
                     <div className="pb-4">
-                        <h2>ビンゴ番号管理</h2>
+                        <h2 className="text-xl font-bold">ビンゴ番号管理</h2>
                         <div className="pb-4">
-                            <h3>番号をビンゴ済にする</h3>
                             <form onSubmit={handleSubmit}>
                                 <Input
                                     name="number"
@@ -106,7 +106,7 @@ export default function AdminConsole() {
                 </div>
                 <div className="flex flex-col w-1/3 px-4">
                     <div className="pb-4">
-                        <h2>景品管理</h2>
+                        <h2 className="text-xl font-bold">景品管理</h2>
                         <AdminPrizeList />
                     </div>
                 </div>
