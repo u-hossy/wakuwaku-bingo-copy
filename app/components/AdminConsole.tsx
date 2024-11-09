@@ -1,20 +1,19 @@
 import { useState } from "react"
 import { signOut } from "firebase/auth";
 import { auth } from "firebase/config";
-import { IsStarted, ProjectorMode } from "~/types/dataTypes";
 import Input from "./Input";
 import ToggleSwitch from "./ToggleSwitch";
 import Button from "./Button";
-import { useFetchNumber } from "~/libs/fetchRealtimeDatabase";
-import { sendNumberAsLatest } from "~/libs/sendRealtimeDatabase";
+import { useFetchIsStarted, useFetchNumber, useFetchProjectorMode } from "~/libs/fetchRealtimeDatabase";
+import { resetAll, resetNumbers, resetPrizes, sendIsStarted, sendNumberAsLatest, sendProjectorMode } from "~/libs/sendRealtimeDatabase";
 import AdminNumberList from "./AdminNumberList";
 import AdminPrizeList from "./AdminPrizeList";
 
 
 
 export default function AdminConsole() {
-    const [isStarted, setIsStarted] = useState<IsStarted>(false);
-    const [projectorMode, setProjectorMode] = useState<ProjectorMode>("latest");
+    const isStarted = useFetchIsStarted();
+    const projectorMode = useFetchProjectorMode();
 
     const [bingoNumberForm, setBingoNumberForm] = useState<number | "">("");
 
@@ -41,10 +40,28 @@ export default function AdminConsole() {
         }
     }
 
-    const handleReset = async () => {
-        if (window.confirm("ビンゴをリセットしますか？")) {
-            // await set(ref(realtimeDatabase, "number/"), []);
-            window.alert("ビンゴをリセットしました");
+    const handleNumberReset = () => {
+        if (window.confirm("本当に番号をすべてリセットしますか？")) {
+            resetNumbers();
+            window.alert("番号をリセットしました");
+        } else {
+            window.alert("キャンセルしました");
+        }
+    }
+
+    const handlePrizeReset = () => {
+        if (window.confirm("本当に景品をリセットしますか？")) {
+            resetPrizes();
+            window.alert("景品をリセットしました");
+        } else {
+            window.alert("キャンセルしました");
+        }
+    }
+
+    const handleAllReset = () => {
+        if (window.confirm("本当にすべてリセットしますか？")) {
+            resetAll();
+            window.alert("すべてリセットしました");
         } else {
             window.alert("キャンセルしました");
         }
@@ -64,20 +81,28 @@ export default function AdminConsole() {
                         <ul className="pb-2">
                             <li className="flex flex-row justify-between py-1">
                                 <span>ビンゴを開始状態にする</span>
-                                <ToggleSwitch checked={isStarted} onChange={setIsStarted} />
+                                <ToggleSwitch checked={isStarted} onClick={() => sendIsStarted(!isStarted)} />
                             </li>
                             <li className="flex flex-row justify-between py-1">
                                 <span>プロジェクターに番号履歴を表示する</span>
-                                <ToggleSwitch checked={projectorMode === "history"} onChange={() => projectorMode === "history" ? setProjectorMode("latest") : setProjectorMode("history")} />
+                                <ToggleSwitch checked={projectorMode === "history"} onClick={() => sendProjectorMode(projectorMode === "history" ? "latest" : "history")} />
                             </li>
                         </ul>
                     </div>
                     <div className="pb-4">
                         <h2 className="text-xl font-bold">ビンゴのリセット</h2>
                         <ul className="pb-2">
-                            <li className="flex flex-row justify-between items-center">
-                                <span>すべての内容をリセットする</span>
-                                <Button onClick={handleReset}>実行</Button>
+                            <li className="py-1 flex flex-row justify-between items-center">
+                                <span>番号を初期状態にリセット</span>
+                                <Button onClick={handleNumberReset}>実行</Button>
+                            </li>
+                            <li className="py-1 flex flex-row justify-between items-center">
+                                <span>景品をを初期状態にリセット</span>
+                                <Button onClick={handlePrizeReset}>実行</Button>
+                            </li>
+                            <li className="py-1 flex flex-row justify-between items-center">
+                                <span>すべてを初期状態にリセット</span>
+                                <Button onClick={handleAllReset}>実行</Button>
                             </li>
                         </ul>
                     </div>

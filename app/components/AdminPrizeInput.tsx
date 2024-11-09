@@ -5,7 +5,7 @@ export default function AdminPrizeInput({ name, amount, decreaseAmount, increase
     <div className="pb-2 flex flex-row justify-between items-center">
       <span className="w-2/3 text-center">{name}</span>
       <Button onClick={decreaseAmount}>-</Button>
-      <span className="w-4 text-right">{amount}</span>
+      <span className="w-6 text-right">{amount}</span>
       <Button onClick={increaseAmount}>+</Button>
     </div>
   );

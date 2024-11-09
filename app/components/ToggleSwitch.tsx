@@ -1,10 +1,10 @@
 import { Switch } from '@headlessui/react'
 
-export default function ToggleSwitch({ checked, onChange }: { checked: boolean, onChange: (checked: boolean) => void }) {
+export default function ToggleSwitch({ checked, onClick }: { checked: boolean, onClick: () => void }) {
     return (
         <Switch
             checked={checked}
-            onChange={onChange}
+            onClick={onClick}
             className="group relative flex h-7 w-14 cursor-pointer rounded-full bg-white/10 p-1 transition-colors duration-200 ease-in-out focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white data-[checked]:bg-white/10"
         >
             <span

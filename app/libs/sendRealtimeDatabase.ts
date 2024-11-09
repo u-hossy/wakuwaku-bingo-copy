@@ -6,6 +6,7 @@ import {
   Prize,
   ProjectorMode,
 } from "~/types/dataTypes";
+import { numbers, prizes } from "~/data/data";
 
 function sendData(directory: string, content: object) {
   set(ref(realtimeDatabase, directory), content);
@@ -63,12 +64,28 @@ function updatePrizeAmount({ id, amount }: Prize) {
 
 // function increasePrizeAmount() {}
 
-function sendProjectorMode(mode: ProjectorMode) {
-  sendData("projector_mode/", { mode });
+function sendProjectorMode(value: ProjectorMode) {
+  sendData("projector_mode/", { value });
 }
 
-function sendIsStarted(isStarted: IsStarted) {
-  sendData("is_started/", { isStarted });
+function sendIsStarted(value: IsStarted) {
+  sendData("is_started/", { value });
+}
+
+function resetNumbers() {
+  for (const n of numbers) {
+    deleteNumber(n);
+  }
+}
+
+function resetPrizes() {
+  const _prizes = Object.fromEntries(prizes.map((p) => [p.id, p]));
+  sendData("prize/", _prizes);
+}
+
+function resetAll() {
+  resetNumbers();
+  resetPrizes();
 }
 
 export {
@@ -82,4 +99,7 @@ export {
   // increasePrizeAmount,
   sendProjectorMode,
   sendIsStarted,
+  resetNumbers,
+  resetPrizes,
+  resetAll,
 };
