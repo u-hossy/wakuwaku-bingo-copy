@@ -25,15 +25,9 @@ export default function AdminConsole() {
         if (_number) {
             const number = _number;
             if (number > 0) {
-                // if (window.confirm(`${number}をビンゴ済みにしますか？`)) {
-                console.log(fetchNumbers);
                 sendNumberAsLatest(number, fetchNumbers);
                 setBingoNumberForm("");
                 event.currentTarget.reset();
-                // window.alert(`${number}をビンゴ済みにしました`);
-                // } else {
-                //     window.alert("キャンセルしました");
-                // }
             } else {
                 window.alert("不正な値が入力されました");
             }
