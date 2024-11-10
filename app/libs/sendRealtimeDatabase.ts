@@ -1,12 +1,13 @@
 import { ref, set, update } from "firebase/database";
+
 import { realtimeDatabase } from "firebase/config";
+import { numbers, prizes } from "~/data/data";
 import {
   BingoNumber,
   IsStarted,
   Prize,
   ProjectorMode,
 } from "~/types/dataTypes";
-import { numbers, prizes } from "~/data/data";
 
 function sendData(directory: string, content: object) {
   set(ref(realtimeDatabase, directory), content);

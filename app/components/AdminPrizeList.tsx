@@ -1,6 +1,7 @@
 import { useFetchPrize } from "~/libs/fetchRealtimeDatabase";
-import AdminBingoPrizeInput from "./AdminPrizeInput";
 import { updatePrizeAmount } from "~/libs/sendRealtimeDatabase";
+
+import AdminBingoPrizeInput from "./AdminPrizeInput";
 
 export default function AdminPrizeList() {
     const fetchPrizes = useFetchPrize();

@@ -1,5 +1,5 @@
-import { ComponentProps } from 'react'
 import { Description, Field, Input as _Input, Label } from '@headlessui/react'
+import { ComponentProps } from 'react'
 
 interface InputFieldProps extends ComponentProps<"input"> { label: string, description?: string }
 

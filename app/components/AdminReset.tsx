@@ -1,5 +1,6 @@
-import Button from "./Button"
 import { resetAll, resetNumbers, resetPrizes } from "~/libs/sendRealtimeDatabase";
+
+import Button from "./Button"
 
 export default function AdminReset() {
     const handleNumberReset = () => {

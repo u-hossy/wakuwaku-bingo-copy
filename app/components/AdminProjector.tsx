@@ -1,6 +1,7 @@
-import ToggleSwitch from "./ToggleSwitch";
 import { useFetchIsStarted, useFetchProjectorMode } from "~/libs/fetchRealtimeDatabase";
 import { sendIsStarted, sendProjectorMode } from "~/libs/sendRealtimeDatabase";
+
+import ToggleSwitch from "./ToggleSwitch";
 
 export default function AdminProjector() {
     const isStarted = useFetchIsStarted();

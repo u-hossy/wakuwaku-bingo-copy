@@ -1,7 +1,8 @@
-import { useFetchNumber } from '../libs/fetchRealtimeDatabase';
 import { numbers } from '~/data/data';
-import { AdminBingoNumberInput, AdminNotBingoNumberInput } from './AdminNumberInput';
 import { deleteNumber, exchangeNumberOrder, sendNumberAsLatest } from '~/libs/sendRealtimeDatabase';
+
+import { AdminBingoNumberInput, AdminNotBingoNumberInput } from './AdminNumberInput';
+import { useFetchNumber } from '../libs/fetchRealtimeDatabase';
 
 export default function AdminNumberList() {
     const fetchNumbers = useFetchNumber();
