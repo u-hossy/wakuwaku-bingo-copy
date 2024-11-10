@@ -61,13 +61,13 @@ export default function AdminConsole() {
         <div className="min-h-screen bg-neutral-950 text-neutral-50 flex flex-col">
             <div className="flex flex-row items-center justify-between px-4 py-2">
                 <div className="w-1/6"></div>
-                <h1 className="text-2xl font-bold py-4 flex-grow text-center">BINGO-ADMIN</h1>
+                <h1 className="flex-grow">BINGO-ADMIN</h1>
                 <div className="w-1/6 flex items-center justify-end"><Button onClick={() => signOut(auth)}>サインアウト</Button></div>
             </div>
             <div className="flex flex-col md:flex-row">
                 <div className="flex flex-col w-1/3 px-4 pb-4">
                     <div className="pb-4">
-                        <h2 className="text-xl font-bold">プロジェクター</h2>
+                        <h2>プロジェクター</h2>
                         <ul className="pb-2">
                             <li className="flex flex-row justify-between py-1">
                                 <span>ビンゴを開始状態にする</span>
@@ -80,7 +80,7 @@ export default function AdminConsole() {
                         </ul>
                     </div>
                     <div className="pb-4">
-                        <h2 className="text-xl font-bold">ビンゴのリセット</h2>
+                        <h2>ビンゴのリセット</h2>
                         <ul className="pb-2">
                             <li className="py-1 flex flex-row justify-between items-center">
                                 <span>番号を初期状態にリセット</span>
@@ -99,7 +99,7 @@ export default function AdminConsole() {
                 </div>
                 <div className="flex flex-col w-1/3 px-4">
                     <div className="pb-4">
-                        <h2 className="text-xl font-bold">ビンゴ番号管理</h2>
+                        <h2>ビンゴ番号管理</h2>
                         <div className="pb-4">
                             <form onSubmit={handleSubmit}>
                                 <Input
@@ -121,7 +121,7 @@ export default function AdminConsole() {
                 </div>
                 <div className="flex flex-col w-1/3 px-4">
                     <div className="pb-4">
-                        <h2 className="text-xl font-bold">景品管理</h2>
+                        <h2>景品管理</h2>
                         <AdminPrizeList />
                     </div>
                 </div>

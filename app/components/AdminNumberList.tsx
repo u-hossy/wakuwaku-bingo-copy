@@ -10,7 +10,7 @@ export default function AdminNumberList() {
     return (
         <div>
             <div className="pb-4">
-                <h3 className="text-lg font-bold">ビンゴ済みの番号</h3>
+                <h3>ビンゴ済みの番号</h3>
                 {fetchNumbers?.map((n, index) => (
                     <AdminBingoNumberInput number={n.name}
                         downOrder={() => exchangeNumberOrder(n, fetchNumbers[index + 1])}
@@ -20,7 +20,7 @@ export default function AdminNumberList() {
                 ))}
             </div>
             <div className="pb-4">
-                <h3 className="text-lg font-bold">未ビンゴの番号</h3>
+                <h3>未ビンゴの番号</h3>
                 {notBingoNumbers.map((n) => (
                     <AdminNotBingoNumberInput
                         number={n}

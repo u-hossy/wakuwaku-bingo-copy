@@ -4,7 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import AdminConsole from '~/components/AdminConsole';
 import SignIn from '~/components/SignIn';
 import { MetaFunction } from '@remix-run/cloudflare';
-import "../admin.css";
+import "../styles/admin.css";
 
 export default function Admin() {
     const [user] = useAuthState(auth);
