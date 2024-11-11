@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { realtimeDatabase } from "firebase/config";
 import { Prize } from "~/types/dataTypes";
 
+import PrizeBox from "~/components/PrizeBox";
+
+
 export default function Prizes() {
     const [remainingPrizes, setRemainingPrizes] = useState<Prize[]>([]);
     const [soldOutPrizes, setSoldOutPrizes] = useState<Prize[]>([]);
@@ -28,6 +31,8 @@ export default function Prizes() {
         <>
             <div>Prizes</div>
             <h3>のこってるやつ</h3>
+            <PrizeBox image="pizza_toast.png" name="ピザトースト"  amount={0} />
+
             <ul>
                 {remainingPrizes.map((prize, index) => {
                     return <li key={index}>{prize.name}, × {prize.amount}</li>

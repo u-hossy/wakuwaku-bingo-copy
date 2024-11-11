@@ -4,12 +4,10 @@ export default function PrizeBox({
   image,
   name,
   amount,
-  isSold
 }: {
   image?: string;
   name: string;
   amount: number;
-  isSold: boolean;
 }) {
   return (
     <div style={styles.container}>
@@ -20,7 +18,7 @@ export default function PrizeBox({
         <p>{name}</p>
         {amount === 0 ? <p>売り切れ</p> : <p>残り{amount}個</p>}
       </div>
-      {isSold && <div style={styles.overlay}></div>}
+      {amount===0 && <div style={styles.overlay}></div>}
     </div>
   );
 }
@@ -36,6 +34,7 @@ const styles: {
     display: 'flex',
     width: '10rem',
     height: '10rem',
+    padding: '5px',
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: 'pink',
@@ -47,14 +46,14 @@ const styles: {
     display: 'flex',
     justifyContent: 'center', // 横方向に中央揃え
     alignItems: 'center', // 縦方向に中央揃え
-    width: '100%',
-    height: '75%', // ボックスの上部3/4を占める
     overflow: 'hidden', // 画像がはみ出さないように
+    width: '100%',
+    height: '75%', 
   },
   image: {
     width: '100%',
     height: '100%',
-    objectFit: 'cover', // 縦横比を保ちながら画像をリサイズ
+    objectFit: 'contain', // 縦横比を保ちながら画像をリサイズ
   },
   textContainer: {
     display: 'flex',
@@ -68,10 +67,10 @@ const styles: {
   },
   overlay: {
     position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    top: '0', // 上部余白
+    left: '0', // 左余白
+    right: '0', // 右余白
+    bottom: '0', // 下余白
     backgroundColor: 'rgba(128, 128, 128, 0.5)', // 半透明の灰色
     borderRadius: '13px'
   }
