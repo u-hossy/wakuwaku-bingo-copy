@@ -1,16 +1,15 @@
-import { useEffect, useState } from "react";
-import { ref, onValue } from "firebase/database";
-import { db } from "firebase/config";
+import { useFetchNumber } from "~/libs/fetchRealtimeDatabase";
 
 export default function Numbers() {
-    const [numbers, setNumbers] = useState<{ "order": number }[]>([]);
-
+    const numbers = useFetchNumber();
     return (
         <>
             <div>Numbers</div>
-            {numbers.map((number, index) => {
-                return <div key={index}>{number.order}</div>
-            })}
+            <ul>
+                {numbers ? numbers.map((number, index) => {
+                    return <li key={index}>{number.name}</li>
+                }) : <></>}
+            </ul>
         </>
     )
 }
