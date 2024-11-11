@@ -1,8 +1,12 @@
-import { useState } from 'react'
-import { Form } from "@remix-run/react";
-import { Button, Input } from "@headlessui/react";
-import { auth } from 'firebase/config'
+import { Form, Link } from "@remix-run/react";
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useState } from 'react'
+
+import { auth } from 'firebase/config'
+
+
+import Button from './Button';
+import Input from './Input';
 
 export default function SignIn() {
     const [errorMessages, setErrorMessages] = useState("");
@@ -28,17 +32,20 @@ export default function SignIn() {
 
     }
     return (
-        <>
-            <Form onSubmit={handleSubmit}>
-                {errorMessages && <div className="text-red-500">{errorMessages}</div>}
-                <label htmlFor="email">email</label>
-                <Input name="email" type="email" className="mb-3 block w-full rounded-lg border bg-white/5 py-1.5 px-3 text-sm/6"></Input>
-                <label htmlFor="password">password</label>
-                <Input name="password" type="password" className="mb-3 block w-full rounded-lg border bg-white/5 py-1.5 px-3 text-sm/6"></Input>
-                <Button type="submit" className="rounded bg-sky-600 py-2 px-4 text-sm text-white data-[hover]:bg-sky-500 data-[active]:bg-sky-700">
-                    Sign In
-                </Button>
+        <div className="pt-4 px-8">
+            <h1 className="text-center text-2xl text-neutral-50">委員向けログイン画面</h1>
+            <Form onSubmit={handleSubmit} className="flex flex-col items-center">
+                <div className="h-8 py-2 text-red-500">{errorMessages && <span>{errorMessages}</span>}</div>
+                <Input label="メールアドレス" name="email" type="email" description="メールアドレスを入力してください" />
+                <Input label="パスワード" name="password" type="password" description="パスワードを入力してください" />
+                <div className="flex flex-row gap-4">
+                    <Link to="/"><Button>一般向けページに戻る</Button></Link>
+                    <Button type="submit">
+                        サインイン
+                    </Button>
+                </div>
+
             </Form>
-        </>
+        </div>
     )
 }

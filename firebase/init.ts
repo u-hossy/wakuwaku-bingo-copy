@@ -1,4 +1,5 @@
 import { ref, set } from "firebase/database";
+
 import { realtimeDatabase } from "firebase/config";
 
 export const initDatabase = () => {

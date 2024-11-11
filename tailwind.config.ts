@@ -6,9 +6,12 @@ export default {
     extend: {
       fontFamily: {
         sans: [
-          '"Inter"',
-          "ui-sans-serif",
-          "system-ui",
+          '"Helvetica Neue"',
+          "Arial",
+          '"Hiragino Kaku Gothic ProN"',
+          '"Hiragino Sans"',
+          '"Noto Sans JP"',
+          "Meiryo",
           "sans-serif",
           '"Apple Color Emoji"',
           '"Segoe UI Emoji"',
