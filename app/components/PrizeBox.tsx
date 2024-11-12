@@ -39,7 +39,7 @@ const styles: {
     borderRadius: "1rem",
     position: "relative", // オーバーレイを重ねるためにpositionをrelativeに設定
     overflow: "hidden", // オーバーレイがはみ出さないように設定
-    boxShadow: "0 0.25rem 0.5rem rgba(3 7 18 0.1)" // 真後ろに影をつける
+    boxShadow: "0 0.1rem 0.5rem rgba(3 7 18 0.5)" // 真後ろに影をつける
   },
   imageContainer: {
     display: "flex",

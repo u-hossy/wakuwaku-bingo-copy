@@ -34,9 +34,25 @@ function useFetchNumber(): BingoNumber[] | null {
 
 function useFetchPrize(): Prize[] | null {
   const data = useFetch<Prize>("prize/");
-  const dataExceptOrder0 = data.filter((c) => c.id > 0);
-  const sortedData = dataExceptOrder0.sort((a, b) => (a.id < b.id ? -1 : 1));
+  const dataExceptId0 = data.filter((c) => c.id > 0);
+  const sortedData = dataExceptId0.sort((a, b) => (a.id < b.id ? -1 : 1));
   return sortedData;
+}
+
+function useFetchPrizeRemaining(): Prize[] | null {
+  const data = useFetchPrize();
+  const remainingData = data
+    ? data.filter((data: { amount: number }) => data.amount > 0)
+    : null;
+  return remainingData;
+}
+
+function useFetchPrizeSoldOut(): Prize[] | null {
+  const data = useFetchPrize();
+  const soldOutData = data
+    ? data.filter((data: { amount: number }) => data.amount === 0)
+    : null;
+  return soldOutData;
 }
 
 function useFetchValue<T>(directory: string) {
@@ -66,6 +82,8 @@ function useFetchIsStarted(): IsStarted {
 export {
   useFetchNumber,
   useFetchPrize,
+  useFetchPrizeRemaining,
+  useFetchPrizeSoldOut,
   useFetchProjectorMode,
   useFetchIsStarted,
 };
