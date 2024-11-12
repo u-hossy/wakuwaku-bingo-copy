@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import Numbers from "~/components/Numbers";
-import PrizeBox from "~/components/PrizeBox";
 import Prizes from "~/components/Prizes";
 
 import type { MetaFunction } from "@remix-run/cloudflare";
