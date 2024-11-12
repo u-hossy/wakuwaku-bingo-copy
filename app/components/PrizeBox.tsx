@@ -1,5 +1,3 @@
-import { connect } from "cloudflare:sockets";
-
 export default function PrizeBox({
   image,
   name,

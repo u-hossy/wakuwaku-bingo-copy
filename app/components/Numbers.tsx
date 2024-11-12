@@ -1,5 +1,7 @@
 import { useFetchNumber } from "~/libs/fetchRealtimeDatabase";
 
+// import NumberBox from "./NumberBox";
+
 export default function Numbers() {
     const numbers = useFetchNumber();
     return (
