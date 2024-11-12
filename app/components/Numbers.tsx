@@ -1,6 +1,6 @@
 import { useFetchNumber } from "~/libs/fetchRealtimeDatabase";
 
-// import NumberBox from "./NumberBox";
+import NumberBox from "./NumberBox";
 
 export default function Numbers() {
     const numbers = useFetchNumber();
@@ -8,8 +8,8 @@ export default function Numbers() {
         <>
             <div>Numbers</div>
             <ul>
-                {numbers ? numbers.map((number, index) => {
-                    return <li key={index}>{number.name}</li>
+                {numbers ? numbers.map((number) => {
+                    return <li key={number.name}><NumberBox size="small" calledNumber={number.name} /></li>
                 }) : <></>}
             </ul>
         </>

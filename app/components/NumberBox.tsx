@@ -1,4 +1,4 @@
-export default function NumberBox({ calledNumber }: { calledNumber: number, size: number }) {
+export default function NumberBox({ calledNumber }: { calledNumber: number, size: "large" | "medium" | "small" }) {
     return (
         <div style={styles.container}>
             <img src="./number-box.png" alt={"No. " + calledNumber} style={styles.image} />
