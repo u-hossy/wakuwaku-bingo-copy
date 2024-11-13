@@ -15,8 +15,8 @@ export default function NumberBox({ calledNumber, size }: { calledNumber: number
         },
         number: {
             position: "absolute",
-            top: "8.75vw",
-            fontSize: "6vw",
+            top: "50%",
+            fontSize: "50%",
             fontWeight: "bold",
         },
     };
@@ -37,8 +37,8 @@ export default function NumberBox({ calledNumber, size }: { calledNumber: number
         },
         number: {
             position: "absolute",
-            top: "9.5vw",
-            fontSize: "5vw",
+            top: "50%",
+            fontSize: "50%",
             fontWeight: "bold",
         },
     };
@@ -59,8 +59,8 @@ export default function NumberBox({ calledNumber, size }: { calledNumber: number
         },
         number: {
             position: "absolute",
-            top: "36vh",
-            fontSize: "15vh",
+            top: "50%",
+            fontSize: "50%",
             fontWeight: "bold",
         },
     };
