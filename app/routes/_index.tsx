@@ -9,8 +9,8 @@ import "../styles/index.css";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Bingo 2024" },
+    { name: "description", content: "Bingo 2024" },
   ];
 };
 
