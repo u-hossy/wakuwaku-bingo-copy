@@ -59,8 +59,8 @@ export default function NumberBox({ calledNumber, size }: { calledNumber: number
         },
         number: {
             position: "absolute",
-            top: "29vh",
-            fontSize: "29vh",
+            top: "36vh",
+            fontSize: "15vh",
             fontWeight: "bold",
         },
     };

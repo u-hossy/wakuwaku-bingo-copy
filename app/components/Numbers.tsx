@@ -7,9 +7,12 @@ export default function Numbers() {
     return (
         <>
             <div className="flex justify-center">Numbers</div>
-            <ul className="mx-2  inline-flex flex-wrap justify-start">
-                {numbers ? numbers.map((number) => {
-                    return <li key={number.name}><NumberBox size="medium" calledNumber={number.name} /></li>
+            <div className="flex justify-center">
+                {numbers && numbers[0] ? <NumberBox size="large" calledNumber={numbers[0].name} /> : <></>}
+            </div>
+            <ul className="mx-2 inline-flex flex-wrap justify-start">
+                {numbers?.slice(1) ? numbers.slice(1).map((number) => {
+                    return <li key={number.name}><NumberBox size="small" calledNumber={number.name} /></li>
                 }) : <></>}
             </ul>
         </>
