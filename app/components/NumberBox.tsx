@@ -1,92 +1,40 @@
+import React from "react";
+
 export default function NumberBox({ calledNumber, size }: { calledNumber: number, size: "large" | "medium" | "small" }) {
-    const styles_small: { container: React.CSSProperties, image: React.CSSProperties, number: React.CSSProperties } = {
+    const styles: {
+        container: React.CSSProperties,
+        image: React.CSSProperties,
+        number: React.CSSProperties,
+    } = {
         container: {
             position: "relative",
-            width: "23vw",
-            height: "23vw",
+            width: size === "large" ? "min(90lvw, 90lvh)" : size === "medium" ? "20lvw" : "23lvw",
+            height: size === "large" ? "min(90lvw, 90lvh)" : size === "medium" ? "20lvw" : "23lvw",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
         },
         image: {
             position: "absolute",
-            width: "23vw",
-            height: "auto",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
         },
         number: {
             position: "absolute",
             top: "50%",
-            fontSize: "50%",
+            left: "50%",
+            translate: "-50% -35%",
+            fontSize: size === "large" ? "min(25lvw, 25lvh)" : size === "medium" ? "15lvw" : "6lvw",
             fontWeight: "bold",
-        },
-    };
-    
-    const styles_medium: { container: React.CSSProperties, image: React.CSSProperties, number: React.CSSProperties } = {
-        container: {
-            position: "relative",
-            width: "19vw",
-            height: "19vw",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-        },
-        image: {
-            position: "absolute",
-            width: "19vw",
-            height: "auto",
-        },
-        number: {
-            position: "absolute",
-            top: "50%",
-            fontSize: "50%",
-            fontWeight: "bold",
+            color: "#000000",
         },
     };
 
-    const styles_large: { container: React.CSSProperties, image: React.CSSProperties, number: React.CSSProperties } = {
-        container: {
-            position: "relative",
-            width: "90vh",
-            height: "90vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-        },
-        image: {
-            position: "absolute",
-            width: "90vh",
-            height: "auto",
-        },
-        number: {
-            position: "absolute",
-            top: "50%",
-            fontSize: "50%",
-            fontWeight: "bold",
-        },
-    };
-
-
-    switch (size) {
-        case "small":
-            return (
-                <div style={styles_small.container}>
-                    <img src="./number-box.png" alt={"No. " + calledNumber} style={styles_small.image} />
-                    <span style={styles_small.number}>{calledNumber}</span>
-                </div>
-            );
-        case "medium":
-            return (
-                <div style={styles_medium.container}>
-                    <img src="./number-box.png" alt={"No. " + calledNumber} style={styles_medium.image} />
-                    <span style={styles_medium.number}>{calledNumber}</span>
-                </div>
-            );
-        case "large":
-            return (
-                <div style={styles_large.container}>
-                    <img src="./number-box.png" alt={"No. " + calledNumber} style={styles_large.image} />
-                    <span style={styles_large.number}>{calledNumber}</span>
-                </div>
-            );
-    }
+    return (
+        <div style={styles.container}>
+            <img src="./number-box.png" alt={"No. " + calledNumber} style={styles.image} />
+            <span style={styles.number}>{calledNumber}</span>
+        </div>
+    );
 }
