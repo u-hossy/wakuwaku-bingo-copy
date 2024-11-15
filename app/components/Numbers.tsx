@@ -18,7 +18,6 @@ export default function Numbers() {
     const numbers = useFetchNumber();
     return (
         <>
-            <div className="flex justify-center">Numbers</div>
             <div className="flex justify-center">
                 {numbers && numbers[0] ? <NumberBox size="large" calledNumber={numbers[0].name} /> : <></>}
             </div>

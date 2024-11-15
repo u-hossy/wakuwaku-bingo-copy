@@ -1,9 +1,12 @@
+import NumberHistory from "~/components/NumberHistory"
 import NumberLatest from "~/components/NumberLatest"
-import Numbers from "~/components/Numbers"
+import { useFetchProjectorMode } from "~/libs/fetchRealtimeDatabase";
+
+import "../styles/display.css"
 
 export default function Display() {
-    const a = 1;
+    const projectorMode = useFetchProjectorMode();
     return (
-        <>{a == 1 ? <NumberLatest /> : <Numbers />}</>
+        <>{projectorMode === "latest"  ? <NumberLatest /> : <NumberHistory />}</>
     )
 }

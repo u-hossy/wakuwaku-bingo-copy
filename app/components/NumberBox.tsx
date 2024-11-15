@@ -8,8 +8,8 @@ export default function NumberBox({ calledNumber, size }: { calledNumber: number
     } = {
         container: {
             position: "relative",
-            width: size === "large" ? "min(90lvw, 90lvh)" : size === "medium" ? "20lvw" : "23lvw",
-            height: size === "large" ? "min(90lvw, 90lvh)" : size === "medium" ? "20lvw" : "23lvw",
+            width: size === "large" ? "min(90lvw, 90lvh)" : size === "medium" ? "23lvw" : "23lvw",
+            height: size === "large" ? "min(90lvw, 90lvh)" : size === "medium" ? "23lvw" : "23lvw",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -25,7 +25,7 @@ export default function NumberBox({ calledNumber, size }: { calledNumber: number
             top: "50%",
             left: "50%",
             translate: "-50% -35%",
-            fontSize: size === "large" ? "min(25lvw, 25lvh)" : size === "medium" ? "15lvw" : "6lvw",
+            fontSize: size === "large" ? "min(25lvw, 25lvh)" : size === "medium" ? "6lvw" : "6lvw",
             fontWeight: "bold",
             color: "#000000",
         },

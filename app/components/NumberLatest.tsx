@@ -1,10 +1,11 @@
+import NumberBox from './NumberBox';
 import { useFetchNumber } from '../libs/fetchRealtimeDatabase';
 
 export default function NumberLatest() {
-    const number = useFetchNumber();
-    console.log(number);
+    const numbers = useFetchNumber();
     return (
-        <div>NumberLatest: {number && number.length > 0 ? <span>{number[0].name}</span> : <></>}</div>
-        // <p>{number[0].name}</p>
-    )
+        <div className="flex justify-center">
+                {numbers && numbers[0] ? <NumberBox size="large" calledNumber={numbers[0].name} /> : <></>}
+            </div>
+        )
 }
