@@ -56,7 +56,8 @@ export default function NumberBox({
   return (
     <div style={styles.container}>
       <img
-        src="./number-box.png"
+        loading="eager"
+        src="./number-box.webp"
         alt={"No. " + calledNumber}
         style={styles.image}
       />
