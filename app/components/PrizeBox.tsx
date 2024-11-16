@@ -39,7 +39,7 @@ const styles: {
     borderRadius: "1rem",
     position: "relative", // オーバーレイを重ねるためにpositionをrelativeに設定
     overflow: "hidden", // オーバーレイがはみ出さないように設定
-    boxShadow: "0 0.1rem 0.5rem rgba(3 7 18 0.5)" // 真後ろに影をつける
+    boxShadow: "0 0.1rem 0.5rem rgba(3 7 18 0.5)", // 真後ろに影をつける
   },
   imageContainer: {
     display: "flex",
@@ -61,7 +61,8 @@ const styles: {
     justifyContent: "center",
     padding: "10px",
     width: "100%",
-    height: "25%" // 高さをボックスの下1/4に設定
+    height: "25%", // 高さをボックスの下1/4に設定
+    color: "#000000",
   },
   overlay: {
     position: "absolute",
@@ -70,6 +71,6 @@ const styles: {
     right: "0", // 右余白
     bottom: "0", // 下余白
     backgroundColor: "rgba(128, 128, 128, 0.5)", // 半透明の灰色
-    borderRadius: "1rem"
-  }
+    borderRadius: "1rem",
+  },
 };
