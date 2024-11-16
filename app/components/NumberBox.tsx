@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function NumberBox({
   calledNumber,
@@ -53,15 +53,24 @@ export default function NumberBox({
     },
   };
 
+  const [loaded, setLoaded] = useState(false);
+
+  const handleImageLoaded = () => {
+    setLoaded(true);
+  };
+
   return (
-    <div style={styles.container}>
-      <img
-        loading="eager"
-        src="./number-box.webp"
-        alt={"No. " + calledNumber}
-        style={styles.image}
-      />
-      <span style={styles.number}>{calledNumber}</span>
-    </div>
+    <>
+      <div style={styles.container}>
+        <img
+          loading="eager"
+          src="./number-box.webp"
+          alt={"No. " + calledNumber}
+          style={styles.image}
+          onLoad={handleImageLoaded}
+        />
+        {loaded && <span style={styles.number}>{calledNumber}</span>}
+      </div>
+    </>
   );
 }
