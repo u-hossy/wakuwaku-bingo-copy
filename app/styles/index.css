@@ -1,14 +1,33 @@
 /* ボタンリストをスタイリッシュに */
 
+:root {
+  --primary-color: #676cb1;
+}
+
 body {
-  background-color: #676cb1;
-  /* -webkit-text-fill-color: black; */
-
+  background-color: var(--primary-color);
   text-align: center;
-
   min-height: 100lvh;
 }
 
+body::before,
+body::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 50%;
+  position: fixed;
+  left: 0;
+  z-index: -1;
+}
+body::before {
+  top: 0;
+  background-color: var(--primary-color);
+}
+body::after {
+  bottom: 0;
+  background-color: var(--primary-color);
+}
 
 /* タブコンテナのスタイル */
 .tab-container {
@@ -32,7 +51,7 @@ body {
 
 /* ボタンホバー時のスタイル */
 .tab-button:hover {
-  color: #000;
+  color: #e8e8e8;
 }
 
 /* 非選択タブの下線 */
@@ -55,4 +74,12 @@ body {
 .tab-button.active::after {
   background-color: #fff; /* 下線の色を白に設定 */
   height: 4px; /* 下線の太さを調整 */
+}
+
+img {
+  -webkit-user-drag: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none;
+  user-select: none;
 }

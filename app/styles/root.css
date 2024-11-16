@@ -1,0 +1,12 @@
+:root {
+  --primary-color: #676cb1; /* キービジュアルの色 */
+}
+
+body {
+  background-color: var(--primary-color);
+  min-height: 100lvh;
+}
+
+.number-box {
+  background-image: "./number-box.png";
+}
