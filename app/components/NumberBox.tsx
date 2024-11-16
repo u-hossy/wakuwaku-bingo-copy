@@ -11,13 +11,12 @@ export default function NumberBox({
     container: React.CSSProperties;
     image: React.CSSProperties;
     number: React.CSSProperties;
-    // largeMessage: React.CSSProperties;
   } = {
     container: {
       position: "relative",
       width:
         size === "large"
-          ? "min(90lvw, 90lvh)"
+          ? "min(85lvw, 85lvh)"
           : size === "medium"
           ? "23lvw"
           : "23lvw",
@@ -33,13 +32,14 @@ export default function NumberBox({
     },
     image: {
       position: "absolute",
+      top: size === "large" ? "-5%" : "0",
       width: "100%",
       height: "100%",
       objectFit: "cover",
     },
     number: {
       position: "absolute",
-      top: "50%",
+      top: size === "large" ? "45%" : "50%",
       left: "50%",
       translate: "-50% -35%",
       fontSize:
@@ -51,16 +51,6 @@ export default function NumberBox({
       fontWeight: "bold",
       color: "#000000",
     },
-    // largeMessage: {
-    //   position: "absolute",
-    //   top: "50%",
-    //   left: "50%",
-    //   translate: "-140% -300%",
-    //   rotate: "-45deg",
-    //   fontSize: "3lvw",
-    //   fontWeight: "bold",
-    //   color: "#000000",
-    // },
   };
 
   return (
@@ -70,9 +60,6 @@ export default function NumberBox({
         alt={"No. " + calledNumber}
         style={styles.image}
       />
-      {size === "large" && (
-        // <span style={styles.largeMessage}>ただいまの番号</span>
-      )}
       <span style={styles.number}>{calledNumber}</span>
     </div>
   );

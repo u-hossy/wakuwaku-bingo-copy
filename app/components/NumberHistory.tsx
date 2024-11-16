@@ -4,17 +4,25 @@ import { useFetchNumber } from "../libs/fetchRealtimeDatabase";
 export default function NumberLatest() {
   const numbers = useFetchNumber();
 
-
-    const styles : {
-        ul: React.CSSProperties,
-    } = {
-        ul: {
-            display: "inline-flex",
-            flexWrap: "wrap",
-            justifyContent: "flex-start",
-            margin: "0 4lvw",
-        },
-    }
+  const styles: {
+    ul: React.CSSProperties;
+    emptyLi: React.CSSProperties;
+  } = {
+    ul: {
+      display: "inline-flex",
+      flexWrap: "wrap",
+      justifyContent: "center",
+      gap: "1lvw",
+    },
+    emptyLi: {
+      position: "relative",
+      width: "23lvw",
+      height: "23lvw",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  };
 
   return (
     <div>
@@ -30,6 +38,10 @@ export default function NumberLatest() {
         ) : (
           <></>
         )}
+        <li style={styles.emptyLi}></li>
+        <li style={styles.emptyLi}></li>
+        <li style={styles.emptyLi}></li>
+        <li style={styles.emptyLi}></li>
       </ul>
     </div>
   );

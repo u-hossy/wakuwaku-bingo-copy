@@ -28,28 +28,39 @@ export default function Numbers() {
     <div className="flex flex-col items-center">
       <div className="flex justify-center">
         {numbers && numbers[0] ? (
-          <NumberBox size="large" calledNumber={numbers[0].name} />
+          <div>
+            <h2 className="text-4xl font-bold text-slate-50 mt-4 z-10">
+              ただいまの番号
+            </h2>
+            <NumberBox size="large" calledNumber={numbers[0].name} />
+          </div>
         ) : (
           <></>
         )}
       </div>
-      <ul style={styles.ul}>
-        {numbers?.slice(1) ? (
-          numbers.slice(1).map((number) => {
-            return (
-              <li key={number.name}>
-                <NumberBox size="small" calledNumber={number.name} />
-              </li>
-            );
-          })
-        ) : (
-          <></>
-        )}
-        <div style={styles.emptyLi}></div>
-        <div style={styles.emptyLi}></div>
-        <div style={styles.emptyLi}></div>
-        <div style={styles.emptyLi}></div>
-      </ul>
+      <div className=" w-11/12 border border-top"></div>
+      <div>
+        <h2 className="text-4xl font-bold text-slate-50 mt-4 z-10">
+          これまでの番号
+        </h2>
+        <ul style={styles.ul}>
+          {numbers?.slice(1) ? (
+            numbers.slice(1).map((number) => {
+              return (
+                <li key={number.name}>
+                  <NumberBox size="small" calledNumber={number.name} />
+                </li>
+              );
+            })
+          ) : (
+            <></>
+          )}
+          <li style={styles.emptyLi}></li>
+          <li style={styles.emptyLi}></li>
+          <li style={styles.emptyLi}></li>
+          <li style={styles.emptyLi}></li>
+        </ul>
+      </div>
     </div>
   );
 }
