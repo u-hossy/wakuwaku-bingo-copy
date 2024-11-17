@@ -1,4 +1,4 @@
-export default function GameNotStarted() {
+export default function Loading() {
   return (
     <div className="h-screen flex flex-col items-center justify-center">
       <p className="text-3xl md:text-5xl font-bold my-1 md:my-8 text-slate-50">
@@ -6,8 +6,8 @@ export default function GameNotStarted() {
         <span className="inline-block">前夜祭ビンゴ</span>
       </p>
       <p className="text-3xl md:text-5xl font-bold my-1 md:my-8 text-slate-50">
-        <span className="inline-block">準備中のため</span>
-        <span className="inline-block">しばらくお待ち下さい</span>
+        {/* <span className="inline-block">準備中のため</span> */}
+        <span className="inline-block">読み込み中…</span>
       </p>
     </div>
   );
