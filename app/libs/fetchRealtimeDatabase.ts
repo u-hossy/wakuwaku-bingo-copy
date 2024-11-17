@@ -56,7 +56,7 @@ function useFetchPrizeSoldOut(): Prize[] | null {
 }
 
 function useFetchValue<T>(directory: string) {
-  const [data, setData] = useState<T>();
+  const [data, setData] = useState<T | null>(null);
   const [db] = useState(realtimeDatabase);
 
   useEffect(() => {
@@ -69,14 +69,14 @@ function useFetchValue<T>(directory: string) {
   return data;
 }
 
-function useFetchProjectorMode(): ProjectorMode {
+function useFetchProjectorMode(): ProjectorMode | null {
   const data = useFetchValue<ProjectorMode>("projector_mode/");
-  return data ? data : "latest";
+  return data !== null ? data : null;
 }
 
-function useFetchIsStarted(): IsStarted {
+function useFetchIsStarted(): IsStarted | null {
   const data = useFetchValue<IsStarted>("is_started/");
-  return data ? data : false;
+  return data !== null ? data : null;
 }
 
 export {
