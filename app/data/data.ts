@@ -72,14 +72,9 @@ const prizes: Prize[] = [
     amount: 1,
   },
   {
-    id: 14,
-    name: "マスクケース",
-    amount: 100,
-  },
-  {
-    id: 15,
-    name: "ペーパーソープ",
-    amount: 200,
+    id:14,
+    name: "ELSONIC USB-C充電器 20W",
+    amount: 1,
   },
   {
     id: 16,
@@ -90,11 +85,6 @@ const prizes: Prize[] = [
     id: 17,
     name: "東京タワー",
     amount: 3,
-  },
-  {
-    id: 18,
-    name: "トゥースブラッシング",
-    amount: 300,
   },
   {
     id: 19,
