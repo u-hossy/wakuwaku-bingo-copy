@@ -48,6 +48,7 @@ const styles: {
     overflow: "hidden", // 画像がはみ出さないように
     width: "100%",
     height: "75%", // 高さをボックスの上3/4に設定
+    color: "#000000",
   },
   image: {
     width: "100%",
