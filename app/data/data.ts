@@ -72,6 +72,11 @@ const prizes: Prize[] = [
     amount: 1,
   },
   {
+    id:14,
+    name: "ELSONIC USB-C充電器 20W",
+    amount: 1,
+  },
+  {
     id: 16,
     name: "カラオケパセラ",
     amount: 10,
