@@ -10,10 +10,10 @@ export default function PrizeBox({
   return (
     <div style={styles.container}>
       <div style={styles.imageContainer}>
-        <img src={image} alt={name} style={styles.image} />
+        {/* <img src={image} alt={name} style={styles.image} /> */}
+        <p>{name}</p>
       </div>
       <div style={styles.textContainer}>
-        <p>{name}</p>
         {amount === 0 ? <p>売り切れ</p> : <p>残り{amount}個</p>}
       </div>
       {amount === 0 && <div style={styles.overlay}></div>}
