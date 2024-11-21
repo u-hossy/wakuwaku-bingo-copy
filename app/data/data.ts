@@ -72,16 +72,6 @@ const prizes: Prize[] = [
     amount: 1,
   },
   {
-    id: 14,
-    name: "マスクケース",
-    amount: 100,
-  },
-  {
-    id: 15,
-    name: "ペーパーソープ",
-    amount: 200,
-  },
-  {
     id: 16,
     name: "カラオケパセラ",
     amount: 10,
@@ -90,11 +80,6 @@ const prizes: Prize[] = [
     id: 17,
     name: "東京タワー",
     amount: 3,
-  },
-  {
-    id: 18,
-    name: "トゥースブラッシング",
-    amount: 300,
   },
   {
     id: 19,
